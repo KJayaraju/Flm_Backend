@@ -25,7 +25,7 @@ const companySchema = new mongoose.Schema({
 
 const Company = mongoose.model("Company", companySchema);
 
-// ✅ GET with Filters + Pagination
+
 app.get("/api/companies", async (req, res) => {
   try {
     const {
@@ -40,24 +40,24 @@ app.get("/api/companies", async (req, res) => {
 
     let query = {};
 
-    // 🔍 Search
+    
     if (search) {
       query.name = { $regex: search, $options: "i" };
     }
 
-    // 📍 Location filter
+    
     if (location) {
       query.location = location;
     }
 
-    // 🏢 Industry filter
+   
     if (industry) {
       query.industry = industry;
     }
 
     const skip = (page - 1) * limit;
 
-    // 🔽 Sorting logic
+   
     const sortOptions = {};
     sortOptions[sort] = order === "asc" ? 1 : -1;
 
@@ -101,5 +101,5 @@ app.get("/api/industries", async (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(` Server running on port ${PORT}`);
 });
